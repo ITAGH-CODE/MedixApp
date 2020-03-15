@@ -1,0 +1,6 @@
+*.sln
+*.dll
+*.pdb
+*.suo
+packages
+.vs

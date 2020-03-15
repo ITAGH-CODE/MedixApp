@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GymDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Gym_Client">
+          <Key>
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="IdClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Prenom" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CIN" Type="varchar" MaxLength="20" />
+          <Property Name="Telephone" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="IdPayementEnCours" Type="int" />
+          <Property Name="Actif" Type="bit" />
+        </EntityType>
+        <EntityType Name="Gym_Payement">
+          <Key>
+            <PropertyRef Name="IdPayement" />
+          </Key>
+          <Property Name="IdPayement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdClient" Type="int" />
+          <Property Name="Montant" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DateDebut" Type="date" Nullable="false" />
+          <Property Name="DateFin" Type="date" Nullable="false" />
+          <Property Name="DateProchainPayement" Type="date" Nullable="false" />
+          <Property Name="isWellOrdered" Type="bit" />
+        </EntityType>
+        <Association Name="FK__Gym_Payem__IdCli__276EDEB3">
+          <End Role="Gym_Client" Type="Self.Gym_Client" Multiplicity="0..1" />
+          <End Role="Gym_Payement" Type="Self.Gym_Payement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gym_Client">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="Gym_Payement">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GymDBModelStoreContainer">
+          <EntitySet Name="Gym_Client" EntityType="Self.Gym_Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gym_Payement" EntityType="Self.Gym_Payement" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Gym_Payem__IdCli__276EDEB3" Association="Self.FK__Gym_Payem__IdCli__276EDEB3">
+            <End Role="Gym_Client" EntitySet="Gym_Client" />
+            <End Role="Gym_Payement" EntitySet="Gym_Payement" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GymDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Gym_Client">
+          <Key>
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="IdClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdPayementEnCours" Type="Int32" />
+          <Property Name="Actif" Type="Boolean" />
+          <NavigationProperty Name="Gym_Payement" Relationship="Self.FK__Gym_Payem__IdCli__276EDEB3" FromRole="Gym_Client" ToRole="Gym_Payement" />
+        </EntityType>
+        <EntityType Name="Gym_Payement">
+          <Key>
+            <PropertyRef Name="IdPayement" />
+          </Key>
+          <Property Name="IdPayement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdClient" Type="Int32" />
+          <Property Name="Montant" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="DateDebut" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateProchainPayement" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isWellOrdered" Type="Boolean" />
+          <NavigationProperty Name="Gym_Client" Relationship="Self.FK__Gym_Payem__IdCli__276EDEB3" FromRole="Gym_Payement" ToRole="Gym_Client" />
+        </EntityType>
+        <Association Name="FK__Gym_Payem__IdCli__276EDEB3">
+          <End Role="Gym_Client" Type="Self.Gym_Client" Multiplicity="0..1" />
+          <End Role="Gym_Payement" Type="Self.Gym_Payement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gym_Client">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="Gym_Payement">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GymDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gym_Client" EntityType="Self.Gym_Client" />
+          <EntitySet Name="Gym_Payement" EntityType="Self.Gym_Payement" />
+          <AssociationSet Name="FK__Gym_Payem__IdCli__276EDEB3" Association="Self.FK__Gym_Payem__IdCli__276EDEB3">
+            <End Role="Gym_Client" EntitySet="Gym_Client" />
+            <End Role="Gym_Payement" EntitySet="Gym_Payement" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GymDBModelStoreContainer" CdmEntityContainer="GymDBEntities">
+          <EntitySetMapping Name="Gym_Client">
+            <EntityTypeMapping TypeName="GymDBModel.Gym_Client">
+              <MappingFragment StoreEntitySet="Gym_Client">
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="CIN" ColumnName="CIN" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdPayementEnCours" ColumnName="IdPayementEnCours" />
+                <ScalarProperty Name="Actif" ColumnName="Actif" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gym_Payement">
+            <EntityTypeMapping TypeName="GymDBModel.Gym_Payement">
+              <MappingFragment StoreEntitySet="Gym_Payement">
+                <ScalarProperty Name="IdPayement" ColumnName="IdPayement" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+                <ScalarProperty Name="DateProchainPayement" ColumnName="DateProchainPayement" />
+                <ScalarProperty Name="isWellOrdered" ColumnName="isWellOrdered" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
