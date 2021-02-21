@@ -1,0 +1,105 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-size : 14px !important;
+}
+footer {
+    margin-top: 10%;
+    text-align: center;
+    background-color : #222;
+    color : white;
+    padding : 10px;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.mynavbar {
+    font-family: 'Agency FB';
+    font-size : medium;
+    color : white !important;
+    font-weight: bold;
+}
+
+.title-page{
+    font-family : 'Agency FB';
+    font-size : medium;
+}
+.title-page {
+    font-family: 'Agency FB';
+    font-size: large;
+}
+#clientsTable {
+    border-radius: 10px 10px;
+    font-family: 'Agency FB';
+    font-size : large;
+    background-color: #302725;
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+    #clientsTable thead tr th {
+        color: white;
+        font-weight: bold;
+        font-family: 'Agency FB';
+    }
+.new-client-div {
+    padding-left: 5%;
+    padding-bottom: 5%;
+    margin-top: 2%;
+}
+
+.row tbody tr.highlight td {
+    background-color: #ccc;
+}
+
+#bar-title {
+    background-color: #302725;
+    color: white;
+    padding-left: 20px;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    border-radius: 9px;
+}
+.paiement-regle {
+    width : 100%;
+    padding : 10px;
+    border-radius: 13px;
+    background-color: lightgreen;
+    font-weight : bold;
+    color : black;
+    font-style : oblique;
+}
+.paiement-non-regle {
+    width: 100%;
+    padding: 10px;
+    border-radius: 13px;
+    background-color: red;
+    font-weight: bold;
+    color: black;
+    font-style: oblique;
+}
+.wo-count {
+    font-weight: bolder;
+    text-align: center;
+    font-size: larger;
+}
