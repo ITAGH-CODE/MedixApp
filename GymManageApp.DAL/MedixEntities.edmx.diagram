@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1e2eb519fb2748d09714b3da78b462cd" Name="Diagram1">
+        <EntityTypeShape EntityType="MedixTesttModel.Clients" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedixTesttModel.States" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedixTesttModel.Status" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedixTesttModel.WorkOrders" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="MedixTesttModel.FK__WorkOrder__Clien__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="MedixTesttModel.FK__WorkOrder__State__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="MedixTesttModel.FK__WorkOrder__Statu__2D27B809" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

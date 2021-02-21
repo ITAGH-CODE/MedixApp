@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MedixTesttModelStoreContainer" CdmEntityContainer="MedixTesttEntities">
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="MedixTesttModel.Clients">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="MedixTesttModel.States">
+        <MappingFragment StoreEntitySet="States">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="MedixTesttModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkOrders">
+      <EntityTypeMapping TypeName="MedixTesttModel.WorkOrders">
+        <MappingFragment StoreEntitySet="WorkOrders">
+          <ScalarProperty Name="WorkOrderId" ColumnName="WorkOrderId" />
+          <ScalarProperty Name="WorkOrderNumber" ColumnName="WorkOrderNumber" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="ETA" ColumnName="ETA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Sp_GetClients" FunctionName="MedixTesttModel.Store.Sp_GetClients">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MedixTesttModel.Sp_GetClients_Result">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_GetStates" FunctionName="MedixTesttModel.Store.Sp_GetStates">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MedixTesttModel.Sp_GetStates_Result">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_GetStatus" FunctionName="MedixTesttModel.Store.Sp_GetStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MedixTesttModel.Sp_GetStatus_Result">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_GetWorkOrderCount" FunctionName="MedixTesttModel.Store.Sp_GetWorkOrderCount" />
+    <FunctionImportMapping FunctionImportName="Sp_GetWorkOrders" FunctionName="MedixTesttModel.Store.Sp_GetWorkOrders">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MedixTesttModel.Sp_GetWorkOrders_Result">
+          <ScalarProperty Name="WorkOrderId" ColumnName="WorkOrderId" />
+          <ScalarProperty Name="WorkOrderNumber" ColumnName="WorkOrderNumber" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ETA" ColumnName="ETA" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="Name1" ColumnName="Name1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Sp_InsertWorkOrder" FunctionName="MedixTesttModel.Store.Sp_InsertWorkOrder" />
+  </EntityContainerMapping>
+</Mapping>

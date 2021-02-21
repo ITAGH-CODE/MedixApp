@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MedixTesttModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="5" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="WorkOrders">
+    <Key>
+      <PropertyRef Name="WorkOrderId" />
+    </Key>
+    <Property Name="WorkOrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorkOrderNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="smalldatetime" />
+    <Property Name="ClientId" Type="int" />
+    <Property Name="StateId" Type="int" />
+    <Property Name="StatusId" Type="int" />
+    <Property Name="ETA" Type="smalldatetime" />
+  </EntityType>
+  <Association Name="FK__WorkOrder__Clien__2B3F6F97">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+    <End Role="WorkOrders" Type="Self.WorkOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="WorkOrders">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WorkOrder__State__2C3393D0">
+    <End Role="States" Type="Self.States" Multiplicity="0..1" />
+    <End Role="WorkOrders" Type="Self.WorkOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="WorkOrders">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WorkOrder__Statu__2D27B809">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="WorkOrders" Type="Self.WorkOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="WorkOrders">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Sp_GetClients" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_GetStates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_GetStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_GetWorkOrderCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_GetWorkOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Sp_InsertWorkOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="WorkOrderNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="ClientId" Type="int" Mode="In" />
+    <Parameter Name="StateId" Type="int" Mode="In" />
+    <Parameter Name="StatusId" Type="int" Mode="In" />
+    <Parameter Name="ETA" Type="smalldatetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="MedixTesttModelStoreContainer">
+    <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkOrders" EntityType="Self.WorkOrders" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__WorkOrder__Clien__2B3F6F97" Association="Self.FK__WorkOrder__Clien__2B3F6F97">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="WorkOrders" EntitySet="WorkOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WorkOrder__State__2C3393D0" Association="Self.FK__WorkOrder__State__2C3393D0">
+      <End Role="States" EntitySet="States" />
+      <End Role="WorkOrders" EntitySet="WorkOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WorkOrder__Statu__2D27B809" Association="Self.FK__WorkOrder__Statu__2D27B809">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="WorkOrders" EntitySet="WorkOrders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

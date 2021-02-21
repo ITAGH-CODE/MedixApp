@@ -76,49 +76,67 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GymEntityDataModel.Context.tt">
+    <Content Include="MedixEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GymEntityDataModel.Context.cs</LastGenOutput>
-      <DependentUpon>GymEntityDataModel.edmx</DependentUpon>
+      <DependentUpon>MedixEntities.edmx</DependentUpon>
+      <LastGenOutput>MedixEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="GymEntityDataModel.tt">
+    <Content Include="MedixEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GymEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>GymEntityDataModel.cs</LastGenOutput>
+      <DependentUpon>MedixEntities.edmx</DependentUpon>
+      <LastGenOutput>MedixEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GymEntityDataModel.Context.cs">
+    <Compile Include="Clients.cs">
+      <DependentUpon>MedixEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MedixEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GymEntityDataModel.Context.tt</DependentUpon>
+      <DependentUpon>MedixEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="GymEntityDataModel.cs">
+    <Compile Include="MedixEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GymEntityDataModel.tt</DependentUpon>
+      <DependentUpon>MedixEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="GymEntityDataModel.Designer.cs">
+    <Compile Include="MedixEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GymEntityDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Gym_Client.cs">
-      <DependentUpon>GymEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Gym_Payement.cs">
-      <DependentUpon>GymEntityDataModel.tt</DependentUpon>
+      <DependentUpon>MedixEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sp_GetClients_Result.cs">
+      <DependentUpon>MedixEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_GetStates_Result.cs">
+      <DependentUpon>MedixEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_GetStatus_Result.cs">
+      <DependentUpon>MedixEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sp_GetWorkOrders_Result.cs">
+      <DependentUpon>MedixEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="States.cs">
+      <DependentUpon>MedixEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Status.cs">
+      <DependentUpon>MedixEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkOrders.cs">
+      <DependentUpon>MedixEntities.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="GymEntityDataModel.edmx">
+    <EntityDeploy Include="MedixEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GymEntityDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>MedixEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="GymEntityDataModel.edmx.diagram">
-      <DependentUpon>GymEntityDataModel.edmx</DependentUpon>
+    <Content Include="MedixEntities.edmx.diagram">
+      <DependentUpon>MedixEntities.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">

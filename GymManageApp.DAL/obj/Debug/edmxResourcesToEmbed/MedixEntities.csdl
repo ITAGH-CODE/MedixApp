@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MedixTesttModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="WorkOrders" Relationship="Self.FK__WorkOrder__Clien__2B3F6F97" FromRole="Clients" ToRole="WorkOrders" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="WorkOrders" Relationship="Self.FK__WorkOrder__State__2C3393D0" FromRole="States" ToRole="WorkOrders" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="WorkOrders" Relationship="Self.FK__WorkOrder__Statu__2D27B809" FromRole="Status" ToRole="WorkOrders" />
+  </EntityType>
+  <EntityType Name="WorkOrders">
+    <Key>
+      <PropertyRef Name="WorkOrderId" />
+    </Key>
+    <Property Name="WorkOrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkOrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+    <Property Name="ClientId" Type="Int32" />
+    <Property Name="StateId" Type="Int32" />
+    <Property Name="StatusId" Type="Int32" />
+    <Property Name="ETA" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK__WorkOrder__Clien__2B3F6F97" FromRole="WorkOrders" ToRole="Clients" />
+    <NavigationProperty Name="States" Relationship="Self.FK__WorkOrder__State__2C3393D0" FromRole="WorkOrders" ToRole="States" />
+    <NavigationProperty Name="Status" Relationship="Self.FK__WorkOrder__Statu__2D27B809" FromRole="WorkOrders" ToRole="Status" />
+  </EntityType>
+  <Association Name="FK__WorkOrder__Clien__2B3F6F97">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+    <End Role="WorkOrders" Type="Self.WorkOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="WorkOrders">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WorkOrder__State__2C3393D0">
+    <End Role="States" Type="Self.States" Multiplicity="0..1" />
+    <End Role="WorkOrders" Type="Self.WorkOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="WorkOrders">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WorkOrder__Statu__2D27B809">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="WorkOrders" Type="Self.WorkOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="WorkOrders">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MedixTesttEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clients" EntityType="Self.Clients" />
+    <EntitySet Name="States" EntityType="Self.States" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="WorkOrders" EntityType="Self.WorkOrders" />
+    <AssociationSet Name="FK__WorkOrder__Clien__2B3F6F97" Association="Self.FK__WorkOrder__Clien__2B3F6F97">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="WorkOrders" EntitySet="WorkOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WorkOrder__State__2C3393D0" Association="Self.FK__WorkOrder__State__2C3393D0">
+      <End Role="States" EntitySet="States" />
+      <End Role="WorkOrders" EntitySet="WorkOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WorkOrder__Statu__2D27B809" Association="Self.FK__WorkOrder__Statu__2D27B809">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="WorkOrders" EntitySet="WorkOrders" />
+    </AssociationSet>
+    <FunctionImport Name="Sp_GetClients" ReturnType="Collection(MedixTesttModel.Sp_GetClients_Result)" />
+    <FunctionImport Name="Sp_GetStates" ReturnType="Collection(MedixTesttModel.Sp_GetStates_Result)" />
+    <FunctionImport Name="Sp_GetStatus" ReturnType="Collection(MedixTesttModel.Sp_GetStatus_Result)" />
+    <FunctionImport Name="Sp_GetWorkOrderCount" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="Sp_GetWorkOrders" ReturnType="Collection(MedixTesttModel.Sp_GetWorkOrders_Result)" />
+    <FunctionImport Name="Sp_InsertWorkOrder">
+      <Parameter Name="WorkOrderNumber" Mode="In" Type="String" />
+      <Parameter Name="ClientId" Mode="In" Type="Int32" />
+      <Parameter Name="StateId" Mode="In" Type="Int32" />
+      <Parameter Name="StatusId" Mode="In" Type="Int32" />
+      <Parameter Name="ETA" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Sp_GetClients_Result">
+    <Property Type="Int32" Name="ClientId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="Sp_GetStates_Result">
+    <Property Type="Int32" Name="StateId" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="true" MaxLength="5" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="Sp_GetStatus_Result">
+    <Property Type="Int32" Name="StatusId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="Sp_GetWorkOrders_Result">
+    <Property Type="Int32" Name="WorkOrderId" Nullable="false" />
+    <Property Type="String" Name="WorkOrderNumber" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="16" />
+    <Property Type="DateTime" Name="ETA" Nullable="true" Precision="16" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="StateId" Nullable="false" />
+    <Property Type="String" Name="Name1" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>
